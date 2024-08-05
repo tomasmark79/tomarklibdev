@@ -49,7 +49,7 @@ planned soon
 1. Clone the repository:
     ```sh
     git clone https://github.com/tomasmark79/tomarklibdev
-    cd project
+    cd tomarklibdev
     ```
 
 2. Create a build directory and navigate into it:
