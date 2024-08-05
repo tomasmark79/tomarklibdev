@@ -1,6 +1,6 @@
 # ToMarkLibrary
 
-My own C++ library with useful stuff
+My own C++ library with useful stuff.
 
 # Library Features
 
@@ -46,6 +46,10 @@ planned soon
 
 ## Installation
 
+Developed under Linux with VSCode and CMake Extension.
+MS Windows via MSYS2 tested too, but Win cmd console isn't supporting printing emojis.
+
+
 1. Clone the repository:
     ```sh
     git clone https://github.com/tomasmark79/tomarklibdev
@@ -63,7 +67,7 @@ planned soon
     cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug 
     cmake --build .
     ```
-3. Windows - Run CMake configuration and compile the project /cmd isn't supporting printing emojis (
+3. Windows - Run CMake configuration and compile the project
      ```sh
     cmake -G "MSYS Makefiles" .. -DCMAKE_BUILD_TYPE=Debug #
     cmake --build .
