@@ -85,6 +85,3 @@ MS Windows via MSYS2 tested too, but Win cmd console isn't supporting printing e
 
 ## Caller.cpp in root folder
 is a `./caller` of compiled library `LibToMarkLibrary.a`. It is here only for fast start. It may show you how to link the library in your project very simply.
-
-## License
-
