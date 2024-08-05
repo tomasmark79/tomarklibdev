@@ -58,10 +58,15 @@ planned soon
     cd build
     ```
 
-3. Run CMake and compile the project:
+3. Linux - Run CMake configuration and compile the project
     ```sh
-    cmake ..
-    make
+    cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug 
+    cmake --build .
+    ```
+3. Windows - Run CMake configuration and compile the project /cmd isn't supporting printing emojis (
+     ```sh
+    cmake -G "MSYS Makefiles" .. -DCMAKE_BUILD_TYPE=Debug #
+    cmake --build .
     ```
 
 ## Source files of library
