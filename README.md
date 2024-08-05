@@ -16,7 +16,8 @@ My own C++ library with useful stuff
 - print or receive Emoji by multiple Code Points with variable count of modifiers
  ```cpp
  // 🧑🏿‍🦯‍➡️
- char32_t emojiCodePointWSelector7[7] = {0x1F9D1, 0x1F3FF, 0x200D, 0x1F9AF, 0x200D, 0x27A1, 0xFE0F}; 
+ char32_t emojiCodePointWSelector7[7] =
+    {0x1F9D1, 0x1F3FF, 0x200D, 0x1F9AF, 0x200D, 0x27A1, 0xFE0F}; 
     printEmojiCodePoint(emojiCodePointWSelector7, 7);
     std::string EmojiTools::getEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
 ```
