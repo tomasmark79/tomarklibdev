@@ -36,12 +36,13 @@ int main(int, char **)
 
     std::cout << tomarklib::emojitools.getEmojiGroup("Smileys & Emotion") << std::endl;
     // 😀😃😄😁😆😅🤣😂🙂🙃🫠😉😊😇🥰😍🤩😘😗 ...
-    std::cout << tomarklib::emojitools.getEmojiGroup("Component") << std::endl;
-    // 🦰🦱🦳🦲
+
     std::cout << tomarklib::emojitools.getEmojiSubGroup("warning") << std::endl;
     // ⚠️⚠🚸⛔🚫🚳🚭🚯🚱🚷📵🔞☢️☢☣️☣
+
     std::cout << tomarklib::emojitools.getEmojiSubGroup("game") << std::endl;
     // 🎯🪀🪁🔫🎱🔮🪄🎮🕹️🕹🎰🎲🧩🧸🪅🪩🪆♠️♠♥️♥♦️♦♣️♣♟️♟🃏🀄🎴
+
     std::cout << tomarklib::emojitools.getEmojiSubGroup("drink") << std::endl;
     // 🍼🥛☕🫖🍵🍶🍾🍷🍸🍹🍺🍻🥂🥃🫗🥤🧋🧃🧉🧊
 
