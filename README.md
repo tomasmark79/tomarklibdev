@@ -6,7 +6,12 @@ Useful C++ library with some of features
 
 ## Unicode emoji tools
 
-**This library feature is very useful to work with Emojis**. You may to get Emoji by codepoints, by group name, by sub group name. You may to get Emoji group or sub group list in vector. It's very easy to work with the library. The source definiction for Emojis is using official document by Unicode organisation which define used unicode version dependent on Unicode resource file located in assets folder.
+**This library feature is very useful to work with Emojis**.
+
+- You may to get **Emoji** by **codepoints**, by group name, by sub group name.
+- You may to get Emoji group or sub group list in vector.
+- It's very easy to work with the library.
+The source definiction for Emojis is using official document by Unicode organisation which define used Unicode version defined within resource file located in assets folder.
 
 ```cpp
     // some useful functions
