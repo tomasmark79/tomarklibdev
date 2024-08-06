@@ -13,17 +13,17 @@ class Utf8Tools
 public:
     Utf8Tools() = default;
 
-    /// @brief
+    /// @brief encode a UTF-8 code point
     /// @param emojiCodePoint
     /// @param buffer8
-    /// @return
+    /// @return char8_t*
     char8_t *encodeUtf8(char32_t emojiCodePoint, char8_t *buffer8);
 
-    /// @brief
+    /// @brief encode a sequence of UTF-8 code points
     /// @param emojiCodePoints
     /// @param length
     /// @param buffer8
-    /// @return
+    /// @return char8_t*
     char8_t *encodeUtf8Sequence(const char32_t *emojiCodePoints, size_t length, char8_t *buffer8);
 };
 

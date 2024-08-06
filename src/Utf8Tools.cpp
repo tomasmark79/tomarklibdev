@@ -7,6 +7,10 @@
 #include <filesystem>
 #include <iostream>
 
+/// @brief encode a UTF-8 code point
+/// @param emojiCodePoint 
+/// @param buffer8 
+/// @return char8_t*
 char8_t *Utf8Tools::encodeUtf8(char32_t emojiCodePoint, char8_t *buffer8)
 {
     constexpr auto byte = [](char32_t x)
@@ -42,6 +46,11 @@ char8_t *Utf8Tools::encodeUtf8(char32_t emojiCodePoint, char8_t *buffer8)
     return buffer8;
 }
 
+/// @brief encode a sequence of UTF-8 code points
+/// @param emojiCodePoints 
+/// @param length 
+/// @param buffer8 
+/// @return char8_t*
 char8_t *Utf8Tools::encodeUtf8Sequence(const char32_t *emojiCodePoints, size_t length, char8_t *buffer8)
 {
     for (size_t i = 0; i < length; ++i)

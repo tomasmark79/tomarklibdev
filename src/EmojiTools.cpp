@@ -1,8 +1,9 @@
-//EmojiTools.cpp
+// EmojiTools.cpp
 #include "../include/EmojiTools.hpp"
 #include "../include/Utf8Tools.hpp"
 #include "../include/hlog.hpp"
 
+#include <stdio.h>
 #include <iostream>
 #include <filesystem>
 #include <algorithm>
@@ -11,35 +12,22 @@
 #define br() std::cout << std::endl
 #define pr(a) std::cout << a
 
-/// @brief Construct a new EmojiTools object
-EmojiTools::EmojiTools()
-{
-    populateEmojiPropertiesMap();
-}
-
-/// @brief Destroy the EmojiTools object
-EmojiTools::~EmojiTools()
-{
-    void(0);
-}
-
 /// @brief Extract emoji properties from file and store them in map
 /// @param epm std::map
 /// @param file std::ifstream
-void EmojiTools::parseEmojiProperties(std::map<int, EmojiPropertiesStructure> &epm, std::ifstream &file)
+void EmojiTools::constructEmojiPropertiesMap(std::map<int, EmojiPropertiesStructure> &epm, std::ifstream &file)
 {
     int mapKey = 0;
     std::vector<char32_t> emojiCodePoints;
     std::string emojiGroup;
     std::string emojiSubGroup;
-    // std::string emojiQualifiers;
-    std::string emojiImage;
     std::string emojiUnicodeVersion;
     std::string emojiTailDescription;
     std::string emojiTextDescription;
     std::string line;
     std::string token;
 
+    // TODO Robust error handling (artefacted file, etc.)
     while (std::getline(file, line))
     {
         if (line.empty())
@@ -132,36 +120,30 @@ void EmojiTools::parseEmojiProperties(std::map<int, EmojiPropertiesStructure> &e
     }
 }
 
-// 🇨🇿
-std::ifstream EmojiTools::loadEmojiAssetFile()
+/// @brief load emoji asset file from assets folder
+/// @return std::ifstream if successful else library exits
+std::ifstream EmojiTools::loadEmojiAssets()
 {
-    std::string filePath = std::filesystem::current_path().string() + "/assets/emoji-test.txt";
-    std::ifstream file(filePath);
-    return file;
+    std::string assetFilePath = std::filesystem::current_path().string() + "/assets/emoji-test.txt";
+    std::ifstream is(assetFilePath);
+    if (!is)
+    {
+        hlog::log(hlog::WARNING_CRITICAL, "Failed to open emoji asset file: %s", assetFilePath.c_str());
+        exit(1);
+    }
+    return is;
 }
 
-bool EmojiTools::populateEmojiPropertiesMap()
+/// @brief Construct a new EmojiTools object
+EmojiTools::EmojiTools()
 {
-    std::ifstream file = loadEmojiAssetFile();
-
-    try
-    {
-
-        parseEmojiProperties(emojiPropertiesMap, file);
-    }
-    catch (const std::exception &e)
-    {
-        hlog::log(hlog::COLOR_ERROR, e.what());
-        return false;
-    }
-    catch (...)
-    {
-        hlog::log(hlog::COLOR_ERROR, "Unknown exception caught in EmojiTools::populateEmojiPropertiesMap()");
-        return false;
-    }
-    return true;
+    std::ifstream is = loadEmojiAssets();
+    constructEmojiPropertiesMap(emojiPropertiesMap, is);
 }
 
+/// @brief
+/// @param emojiCodePoints
+/// @param length
 void EmojiTools::printEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
 {
     char8_t buffer[32];

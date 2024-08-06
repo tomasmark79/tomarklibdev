@@ -1,6 +1,6 @@
 # ToMarkLibrary
 
-My own C++ library with useful stuff.
+Useful C++ library with some of features 
 
 # Library Features
 

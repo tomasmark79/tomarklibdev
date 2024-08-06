@@ -21,9 +21,6 @@ public:
     /// @brief Construct a new EmojiTools object
     EmojiTools();
 
-    /// @brief Destroy the EmojiTools object
-    ~EmojiTools();
-
 private:
     bool isPopulated{false};
     struct EmojiPropertiesStructure
@@ -31,17 +28,13 @@ private:
         std::vector<char32_t> emojiCodePoints;
         std::string emojiGroup;
         std::string emojiSubGroup;
-        // std::string emojiQualifiers;
-        std::string emojiImage;
         std::string emojiUnicodeVersion;
-        std::string emojiTailDescription;
         std::string emojiTextDescription;
     };
     std::map<int, EmojiPropertiesStructure> emojiPropertiesMap;
 
-    void parseEmojiProperties(std::map<int, EmojiPropertiesStructure> &epm, std::ifstream &file);
-    std::ifstream loadEmojiAssetFile();
-    bool populateEmojiPropertiesMap();
+    void constructEmojiPropertiesMap(std::map<int, EmojiPropertiesStructure> &epm, std::ifstream &file);
+    std::ifstream loadEmojiAssets();
 
 public:
     void printEmojiCodePoint(char32_t *emojiCodePoints, size_t length);
@@ -55,7 +48,7 @@ public:
 
     void printGroupsText();
     std::string getGroupsText(std::string delimiter);
-    
+
     void printSubGroupsText();
     std::string getSubGroupsText(std::string delimiter);
 
