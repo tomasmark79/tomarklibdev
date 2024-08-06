@@ -5,34 +5,17 @@ Useful C++ library with some of features
 # Library Features
 
 ## Unicode emoji tools
-- print or receive Emoji by Code Point
-```cpp
-// 😀
- char32_t emojiCodePoint[1] = {0x1F600}; 
-    printEmojiCodePoint(emojiCodePoint, 1);
-    std::string EmojiTools::getEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
-```
 
-- print or receive Emoji by multiple Code Points with variable count of modifiers
- ```cpp
- // 🧑🏿‍🦯‍➡️
- char32_t emojiCodePointWSelector7[7] =
-    {0x1F9D1, 0x1F3FF, 0x200D, 0x1F9AF, 0x200D, 0x27A1, 0xFE0F}; 
-    printEmojiCodePoint(emojiCodePointWSelector7, 7);
-    std::string EmojiTools::getEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
-```
-
-- print or receive Emojis by Group
 ```cpp
-    🤠🥳🥸😎🤓🧐😕🫤😟🙁☹️☹😮😯😲😳🥺🥹😦🤡👹👺👻👽👾
-    printEmojiGroup("Smileys & Emotion");    
-```
+    // some useful functions
+    std::cout << tomarklib::emojitools.getEmojiGroupsDelimitered(';') << std::endl;
+    std::cout << tomarklib::emojitools.getEmojiGroupsDelimitered('\n') << std::endl;
+    std::vector<std::string> vecEmojiGroups = tomarklib::emojitools.getEmojiGroupsList();
 
-- print or receive Emoji by Sub Group
-```cpp
-    😌😔😪🤤😴
-    printEmojiSubGroup("face-sleepy");
-```
+    std::cout << tomarklib::emojitools.getEmojiSubGroupsDelimitered(';') << std::endl;
+    std::cout << tomarklib::emojitools.getEmojiSubGroupsDelimitered('\n') << std::endl;
+    std::vector<std::string> vecEmojiSubGroups = tomarklib::emojitools.getEmojiSubGroupsList();
+```    
 
 ## ToDo
 

@@ -12,7 +12,7 @@
 #define br() std::cout << std::endl
 #define pr(a) std::cout << a
 
-/// @brief Extract emoji properties from file and store them in map
+/// @brief Construct a new EmojiTools object
 /// @param epm std::map
 /// @param file std::ifstream
 void EmojiTools::constructEmojiPropertiesMap(std::map<int, EmojiPropertiesStructure> &epm, std::ifstream &file)
@@ -141,6 +141,137 @@ EmojiTools::EmojiTools()
     constructEmojiPropertiesMap(emojiPropertiesMap, is);
 }
 
+/// @brief receive emoji code points and return emoji character
+/// @param emojiCodePoints as array of char32_t
+/// @param length size_t of emojiCodePoints
+/// @return std::string Emoji character
+std::string EmojiTools::getEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
+{
+    if (isPopulated)
+    {
+        char8_t buffer[32];
+        Utf8Tools utf8tools;
+        char8_t *end = utf8tools.encodeUtf8Sequence(emojiCodePoints, length, buffer);
+        *end = '\0'; // Null-terminating the string
+        return std::string(reinterpret_cast<char *>(buffer));
+    }
+    else
+        return "";
+}
+
+/// @brief get all emoji groups delimitered
+/// @param delimiter char32_t examples: ',' ';' '\n', etc.
+/// @return std::string of emoji groups delimitered
+std::string EmojiTools::getEmojiGroupsDelimitered(char32_t delimiter)
+{
+    if (isPopulated)
+    {
+        std::vector<std::string> vecGroups;
+        std::string stringDelimiteredGroups;
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (std::find(vecGroups.begin(), vecGroups.end(), epm.second.emojiGroup) == vecGroups.end())
+            {
+                vecGroups.push_back(epm.second.emojiGroup); // Groups map source
+            }
+        }
+        for (auto &groupItem : vecGroups)
+        {
+            stringDelimiteredGroups += groupItem; 
+            if (groupItem != vecGroups.back())
+            {
+                stringDelimiteredGroups += delimiter;
+            }
+        }
+        return stringDelimiteredGroups;
+    }
+    return "";
+}
+
+/// @brief get all emoji groups list
+/// @return std::vector of emoji groups
+std::vector<std::string> EmojiTools::getEmojiGroupsList()
+{
+    if (isPopulated)
+    {
+        std::vector<std::string> vecGroups;
+
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (std::find(vecGroups.begin(), vecGroups.end(), epm.second.emojiGroup) == vecGroups.end())
+            {
+                vecGroups.push_back(epm.second.emojiGroup); // Groups map source
+            }
+        }
+        return vecGroups;
+    }
+    return {};
+}
+
+
+/// @brief get all emoji subgroups delimitered
+/// @param delimiter char32_t examples: ',' ';' '\n', etc.
+/// @return std::string of emoji subgroups delimitered
+std::string EmojiTools::getEmojiSubGroupsDelimitered(char32_t delimiter)
+{
+    if (isPopulated)
+    {
+        std::vector<std::string> vecSubGroups;
+        std::string stringDelimiteredSubGroups;
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (std::find(vecSubGroups.begin(), vecSubGroups.end(), epm.second.emojiSubGroup) == vecSubGroups.end())
+            {
+                vecSubGroups.push_back(epm.second.emojiSubGroup); // SubGroups map source
+            }
+        }
+        for (auto &subGroupItem : vecSubGroups)
+        {
+            stringDelimiteredSubGroups += subGroupItem;
+            if (subGroupItem != vecSubGroups.back())
+            {
+                stringDelimiteredSubGroups += delimiter;
+            }
+        }
+        return stringDelimiteredSubGroups;
+    }
+    return "";
+}
+
+/// @brief get all emoji subgroups list
+/// @return std::vector of emoji subgroups
+std::vector<std::string> EmojiTools::getEmojiSubGroupsList()
+{
+    if (isPopulated)
+    {
+        std::vector<std::string> vecSubGroups;
+
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (std::find(vecSubGroups.begin(), vecSubGroups.end(), epm.second.emojiSubGroup) == vecSubGroups.end())
+            {
+                vecSubGroups.push_back(epm.second.emojiSubGroup); // SubGroups map source
+            }
+        }
+        return vecSubGroups;
+    }
+    return {};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /// @brief
 /// @param emojiCodePoints
 /// @param length
@@ -151,15 +282,6 @@ void EmojiTools::printEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
     char8_t *end = utf8tools.encodeUtf8Sequence(emojiCodePoints, length, buffer);
     *end = '\0'; // Null-terminating the string
     std::cout << reinterpret_cast<char *>(buffer);
-}
-
-std::string EmojiTools::getEmojiCodePoint(char32_t *emojiCodePoints, size_t length)
-{
-    char8_t buffer[32];
-    Utf8Tools utf8tools;
-    char8_t *end = utf8tools.encodeUtf8Sequence(emojiCodePoints, length, buffer);
-    *end = '\0'; // Null-terminating the string
-    return std::string(reinterpret_cast<char *>(buffer));
 }
 
 void EmojiTools::printEmojiGroupWDescription(std::string emojiGroup)
@@ -258,33 +380,6 @@ void EmojiTools::printGroupsText()
             br();
         }
     }
-}
-
-std::string EmojiTools::getGroupsText(std::string delimiter)
-{
-    if (isPopulated)
-    {
-        std::vector<std::string> groups;
-        std::string strGroups;
-        for (auto &epm : emojiPropertiesMap)
-        {
-            if (std::find(groups.begin(), groups.end(), epm.second.emojiGroup) == groups.end())
-            {
-                groups.push_back(epm.second.emojiGroup);
-            }
-        }
-
-        for (auto &group : groups)
-        {
-            strGroups += group;
-            if (group != groups.back())
-            {
-                strGroups += delimiter;
-            }
-        }
-        return strGroups;
-    }
-    return "";
 }
 
 std::string EmojiTools::getSubGroupsText(std::string delimiter)
@@ -386,11 +481,11 @@ void EmojiTools::visualTest()
     br();
     br();
     hlog::log(hlog::WARNING_SUCCESS, "getGroupsText(\",\")");
-    pr(getGroupsText(","));
+    //pr(getGroupsText(","));
     br();
     br();
     hlog::log(hlog::WARNING_SUCCESS, "getGroupsText(\"|\")");
-    pr(getGroupsText("|"));
+    //pr(getGroupsText("|"));
     br();
     br();
     hlog::log(hlog::WARNING_SUCCESS, "getSubGroupsText(\";\")");

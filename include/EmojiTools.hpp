@@ -37,23 +37,26 @@ private:
     std::ifstream loadEmojiAssets();
 
 public:
-    void printEmojiCodePoint(char32_t *emojiCodePoints, size_t length);
+    
     std::string getEmojiCodePoint(char32_t *emojiCodePoints, size_t length);
 
+    std::string getEmojiGroupsDelimitered(char32_t delimiter);
+    std::vector<std::string> getEmojiGroupsList();
+
+    std::string getEmojiSubGroupsDelimitered(char32_t delimiter);
+    std::vector<std::string> getEmojiSubGroupsList();
+
+
+
+    std::string getSubGroupsText(std::string delimiter);
+    void printEmojiCodePoint(char32_t *emojiCodePoints, size_t length);
     void printEmojiGroupWDescription(std::string emojiGroup);
     void printEmojiGroup(std::string emojiGroup);
-
     void printEmojiSubGroupWDescription(std::string emojiSubGroup);
     void printEmojiSubGroup(std::string emojiSubGroup);
-
     void printGroupsText();
-    std::string getGroupsText(std::string delimiter);
-
     void printSubGroupsText();
-    std::string getSubGroupsText(std::string delimiter);
-
     void printEmojiDescription(std::string emojiDescription);
-
     void visualTest();
 };
 
