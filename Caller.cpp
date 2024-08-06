@@ -20,6 +20,11 @@ int main(int, char **)
     std::cout << tomarklib::emojitools.getEmojiSubGroupsDelimitered('\n') << std::endl;
     std::vector<std::string> vecEmojiSubGroups = tomarklib::emojitools.getEmojiSubGroupsList();
 
+    std::cout << tomarklib::emojitools.getEmojiGroup("Smileys & Emotion") << std::endl;
+    std::cout << tomarklib::emojitools.getEmojiGroup("Component") << std::endl;
+    std::cout << tomarklib::emojitools.getEmojiSubGroup("warning") << std::endl;
+    std::cout << tomarklib::emojitools.getEmojiSubGroup("game") << std::endl;
+    
 
     return 0;
 }

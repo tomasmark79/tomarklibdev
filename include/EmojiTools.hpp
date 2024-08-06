@@ -46,6 +46,8 @@ public:
     std::string getEmojiSubGroupsDelimitered(char32_t delimiter);
     std::vector<std::string> getEmojiSubGroupsList();
 
+    std::string getEmojiGroup(std::string emojiGroup);
+    std::string getEmojiSubGroup(std::string emojiSubGroup);
 
 
     std::string getSubGroupsText(std::string delimiter);

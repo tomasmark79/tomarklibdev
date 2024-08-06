@@ -6,16 +6,34 @@ Useful C++ library with some of features
 
 ## Unicode emoji tools
 
+Emoji Groups
 ```cpp
     // some useful functions
     std::cout << tomarklib::emojitools.getEmojiGroupsDelimitered(';') << std::endl;
     std::cout << tomarklib::emojitools.getEmojiGroupsDelimitered('\n') << std::endl;
     std::vector<std::string> vecEmojiGroups = tomarklib::emojitools.getEmojiGroupsList();
+```
 
+Emoji SubGroups
+```cpp
     std::cout << tomarklib::emojitools.getEmojiSubGroupsDelimitered(';') << std::endl;
     std::cout << tomarklib::emojitools.getEmojiSubGroupsDelimitered('\n') << std::endl;
     std::vector<std::string> vecEmojiSubGroups = tomarklib::emojitools.getEmojiSubGroupsList();
-```    
+```
+
+Populating std::string with an Emojis by Groups or SubGroups
+```cpp
+    std::cout << tomarklib::emojitools.getEmojiGroup("Smileys & Emotion") << std::endl;
+    😀😃😄😁😆😅🤣😂🙂🙃🫠😉😊😇🥰😍🤩😘😗 ...
+    std::cout << tomarklib::emojitools.getEmojiGroup("Component") << std::endl;
+    🏻🏼🏽🏾🏿🦰🦱🦳🦲
+    std::cout << tomarklib::emojitools.getEmojiSubGroup("warning") << std::endl;
+    ⚠️⚠🚸⛔🚫🚳🚭🚯🚱🚷📵🔞☢️☢☣️☣
+    std::cout << tomarklib::emojitools.getEmojiSubGroup("game") << std::endl;
+    🎯🪀🪁🔫🎱🔮🪄🎮🕹️🕹🎰🎲🧩🧸🪅🪩🪆♠️♠♥️♥♦️♦♣️♣♟️♟🃏🀄🎴
+```
+
+
 
 ## ToDo
 

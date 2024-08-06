@@ -258,10 +258,45 @@ std::vector<std::string> EmojiTools::getEmojiSubGroupsList()
     return {};
 }
 
+/// @brief get emoji group
+/// @param emojiGroup case sensitive
+/// @return std::string of emoji group
+std::string EmojiTools::getEmojiGroup(std::string emojiGroup)
+{
+    if (isPopulated)
+    {
+        std::string emojis = "";
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (epm.second.emojiGroup == emojiGroup)
+            {
+                emojis += getEmojiCodePoint(epm.second.emojiCodePoints.data(), epm.second.emojiCodePoints.size());
+            }
+        }
+        return emojis;
+    }
+    return "";
+}
 
-
-
-
+/// @brief get emoji subgroup
+/// @param emojiSubGroup case sensitive
+/// @return std::string of emoji group
+std::string EmojiTools::getEmojiSubGroup(std::string emojiSubGroup)
+{
+    if (isPopulated)
+    {
+        std::string emojis = "";
+        for (auto &epm : emojiPropertiesMap)
+        {
+            if (epm.second.emojiSubGroup == emojiSubGroup)
+            {
+                emojis += getEmojiCodePoint(epm.second.emojiCodePoints.data(), epm.second.emojiCodePoints.size());
+            }
+        }
+        return emojis;
+    }
+    return "";
+}
 
 
 
